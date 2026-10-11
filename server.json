@@ -6,13 +6,13 @@
     "url": "https://github.com/atushi1841/mlit-property-prices-mcp",
     "source": "github"
   },
-  "version": "0.1.0",
+  "version": "0.1.1",
   "title": "MLIT Property Prices MCP",
   "packages": [
     {
       "registryType": "mcpb",
-      "identifier": "https://github.com/atushi1841/mlit-property-prices-mcp/releases/download/v0.1.0/server.mcpb",
-      "version": "0.1.0",
+      "identifier": "https://github.com/atushi1841/mlit-property-prices-mcp/releases/download/v0.1.1/server.mcpb",
+      "version": "0.1.1",
       "fileSha256": "e2f5d4ce75b2becdc170cbb264f8f509674b3cd3367f5f469ba629bb34f522ca",
       "transport": {
         "type": "stdio"

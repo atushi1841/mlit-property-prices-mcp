@@ -17,3 +17,8 @@ npx @modelcontextprotocol/inspector
 ## ライセンス
 
 MIT
+
+## MCP Registry
+
+This server is registered on the official [MCP Registry](https://registry.modelcontextprotocol.io).
+Find it via search: [mlit-property-prices-mcp](https://registry.modelcontextprotocol.io/v0/servers?search=io.github.mlit-property-prices-mcp)

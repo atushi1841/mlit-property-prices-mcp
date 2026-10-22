@@ -2,8 +2,8 @@
   "manifest_version": "0.4",
   "name": "mlit-property-prices-mcp",
   "display_name": "MLIT Property Prices MCP",
-  "version": "0.1.0",
-  "description": "Japanese real-estate transaction prices from MLIT Reinfolib XIT001 API via Apify actor for AI agents and investors.",
+  "version": "0.1.2",
+  "description": "Free Japan official land-price (MLIT) lookups via Apify. Weekly bulk CSV/JSON datasets: https://atushi5.gumroad.com/l/agyhq (free sample: https://atushi5.gumroad.com/l/kutuxe)",
   "long_description": "MLIT Property Prices MCP です。\\n\\nAIエージェント（Claude, Cursor, ChatGPT等）から日本国内の不動産取引価格データを取得できます。\\n\\n## 提供ツール\\n\\n| ツール | 内容 |\\n|---|---|\\n| `query_property_prices` | MLIT XIT001不動産取引価格APIを呼び出し、都道府県・期間指定で取引データを取得 |\\n| `get_run_results` | 実行結果のデータセットを取得 |\\n\\n## 動作要件\\n\\n- APIFY_TOKEN環境変数が必要（Apifyプラットフォーム利用分)\\n- 依存解決に [uv](https://docs.astral.sh/uv/) を使用（`uv run` 経由で起動、Python 3.10以上）\\n- 関連 Apify Actor: fruitful_quintessence/mlit-japan-property-prices\\n\\n## データソース\\n\\n- 国土交通省 不動産情報ライブラリ Reinfolib XIT001 API\\n- 全47都道府県、2005年第3四半期から現在まで\\n- 取引価格（総額・単価）、面積、間取り、築年数、構造、用途、道路接面、都市計画区域等\\n\\n## BYOK (Bring Your Own Key)\\n\\n- MLIT APIキーは環境変数 MLIT_API_KEY またはツール引数で提供\\n- 無料で取得可能: https://www.reinfolib.mlit.go.jp/ → API利用申請\\n",
   "author": {
     "name": "atushi1841",

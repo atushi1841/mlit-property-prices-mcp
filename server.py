@@ -15,8 +15,9 @@ import os
 from typing import Any
 
 from fastmcp import FastMCP
+from billing import billing_meta, increment
 
-server = FastMCP("mlit-property-prices")
+server = FastMCP("mlit-property-prices", instructions="Free Japanese land-price lookups. Weekly bulk CSV/JSON datasets: https://atushi5.gumroad.com/l/agyhq (free sample: https://atushi5.gumroad.com/l/kutuxe)")
 
 ACTOR_NAME = "mlit-japan-property-prices"
 APIFY_API_BASE = "https://api.apify.com/v2"
@@ -32,7 +33,7 @@ def _run_actor(input_data: dict[str, Any]) -> dict[str, Any]:
 
     token = _token()
     if not token:
-        return {"error": "APIFY_TOKEN not set in environment"}
+        return {"error": "APIFY_TOKEN not set in environment", "_pro": billing_meta()}
 
     body = json.dumps({"input": input_data}).encode()
     req = urllib.request.Request(
@@ -49,10 +50,10 @@ def _run_actor(input_data: dict[str, Any]) -> dict[str, Any]:
         with urllib.request.urlopen(req, timeout=60) as resp:
             data = json.loads(resp.read().decode())
     except urllib.error.HTTPError as exc:
-        return {"error": f"Apify API {exc.code}: {exc.read().decode(errors='replace')[:400]}"}
+        return {"error": f"Apify API {exc.code}: {exc.read().decode(errors='replace')[:400]}", "_pro": billing_meta()}
 
     run_id = (data.get("data") or {}).get("id")
-    return {"runId": run_id, "status": "started"}
+    return {"runId": run_id, "status": "started", "_pro": billing_meta()}
 
 
 def _fetch_dataset(run_id: str, limit: int) -> dict[str, Any]:
@@ -61,7 +62,7 @@ def _fetch_dataset(run_id: str, limit: int) -> dict[str, Any]:
 
     token = _token()
     if not token:
-        return {"error": "APIFY_TOKEN not set"}
+        return {"error": "APIFY_TOKEN not set", "_pro": billing_meta()}
 
     req = urllib.request.Request(
         f"{APIFY_API_BASE}/actor-runs/{run_id}/dataset/items?limit={limit}",
@@ -71,10 +72,10 @@ def _fetch_dataset(run_id: str, limit: int) -> dict[str, Any]:
         with urllib.request.urlopen(req, timeout=120) as resp:
             data = json.loads(resp.read().decode())
     except urllib.error.HTTPError as exc:
-        return {"error": f"Apify API {exc.code}: {exc.read().decode(errors='replace')[:400]}"}
+        return {"error": f"Apify API {exc.code}: {exc.read().decode(errors='replace')[:400]}", "_pro": billing_meta()}
 
     items = (data.get("data") or {}).get("items", []) if isinstance(data, dict) else data
-    return {"runId": run_id, "count": len(items), "items": items[:limit]}
+    return {"runId": run_id, "count": len(items), "items": items[:limit], "_pro": billing_meta()}
 
 
 @server.tool()
@@ -104,6 +105,7 @@ def query_property_prices(
         max_requests: Safety cap on upstream MLIT API calls.
         limit: Max dataset records returned.
     """
+    increment()
     input_data: dict[str, Any] = {
         "yearFrom": year_from,
         "yearTo": year_to,
@@ -121,6 +123,7 @@ def query_property_prices(
 @server.tool()
 def get_run_results(run_id: str, limit: int = 1000) -> dict[str, Any]:
     """Fetch the dataset produced by a run started via query_property_prices."""
+    increment()
     return _fetch_dataset(run_id, limit)
 
 

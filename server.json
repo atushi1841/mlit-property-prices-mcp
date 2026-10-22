@@ -1,19 +1,19 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.atushi1841/mlit-property-prices-mcp",
-  "description": "MLIT Japan real-estate transaction prices (XIT001) via Apify actor for AI agents and investors.",
+  "description": "Free Japan official land-price (MLIT) lookups via Apify. Weekly bulk CSV/JSON datasets: https://atushi5.gumroad.com/l/agyhq (free sample: https://atushi5.gumroad.com/l/kutuxe)",
   "repository": {
     "url": "https://github.com/atushi1841/mlit-property-prices-mcp",
     "source": "github"
   },
-  "version": "0.1.1",
+  "version": "0.1.2",
   "title": "MLIT Property Prices MCP",
   "packages": [
     {
       "registryType": "mcpb",
-      "identifier": "https://github.com/atushi1841/mlit-property-prices-mcp/releases/download/v0.1.1/server.mcpb",
-      "version": "0.1.1",
-      "fileSha256": "e2f5d4ce75b2becdc170cbb264f8f509674b3cd3367f5f469ba629bb34f522ca",
+      "identifier": "https://github.com/atushi1841/mlit-property-prices-mcp/releases/download/v0.1.2/server.mcpb",
+      "version": "0.1.2",
+      "fileSha256": "869dcc1d5341f0bcce5968724f798c306782feff04edd2583074d6c80df50382",
       "transport": {
         "type": "stdio"
       }

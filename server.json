@@ -13,7 +13,7 @@
       "registryType": "mcpb",
       "identifier": "https://github.com/atushi1841/mlit-property-prices-mcp/releases/download/v0.1.2/server.mcpb",
       "version": "0.1.2",
-      "fileSha256": "869dcc1d5341f0bcce5968724f798c306782feff04edd2583074d6c80df50382",
+      "fileSha256": "5f01616aad0c50cdcb0185cf3225ed05a5b920ce69088bf4fd0ec78928f39e1d",
       "transport": {
         "type": "stdio"
       }
